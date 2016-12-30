@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.facebook.soloader.SoLoader;
 import com.facebook.yoga.YogaAlign;
@@ -18,51 +19,52 @@ public class YogaActivity extends AppCompatActivity {
 
     private static final String TAG = YogaActivity.class.getSimpleName();
 
+    private TextView mYogaText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yoga);
-        System.loadLibrary("gnustl_shared");
-        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SoLoader.init(YogaActivity.this,false);
-                initYoga();
-            }
-        });
+        mYogaText = (TextView) findViewById(R.id.yogaText);
+
+        initYoga();
     }
 
     private void initYoga(){
-        try {
-            YogaNode root = new YogaNode();
-            root.setWidth(500);
-            root.setHeight(300);
-            root.setAlignItems(YogaAlign.CENTER);
-            root.setJustifyContent(YogaJustify.CENTER);
-            root.setPadding(YogaEdge.ALL, 20);
 
-            YogaNode text = new YogaNode();
-            text.setWidth(200);
-            text.setHeight(25);
+        SoLoader.init(YogaActivity.this,false);
 
-            YogaNode image = new YogaNode();
-            image.setWidth(50);
-            image.setHeight(50);
-            image.setPositionType(YogaPositionType.ABSOLUTE);
-            image.setPosition(YogaEdge.END, 20);
-            image.setPosition(YogaEdge.TOP, 20);
 
-            root.addChildAt(text, 0);
-            root.addChildAt(image, 1);
+        YogaNode root = new YogaNode();
+        root.setWidth(500);
+        root.setHeight(300);
+        root.setAlignItems(YogaAlign.CENTER);
+        root.setJustifyContent(YogaJustify.CENTER);
+        root.setPadding(YogaEdge.ALL, 20);
 
-            root.calculateLayout();
+        YogaNode text = new YogaNode();
+        text.setWidth(200);
+        text.setHeight(25);
 
-            Log.d(TAG,"text,layout X:"+text.getLayoutX()+" layout Y:"+text.getLayoutY());
-            Log.d(TAG,"image,layout X:"+image.getLayoutX()+" layout Y:"+image.getLayoutY());
+        YogaNode image = new YogaNode();
+        image.setWidth(50);
+        image.setHeight(50);
+        image.setPositionType(YogaPositionType.ABSOLUTE);
+        image.setPosition(YogaEdge.END, 20);
+        image.setPosition(YogaEdge.TOP, 20);
 
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        root.addChildAt(text, 0);
+        root.addChildAt(image, 1);
+
+        root.calculateLayout();
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("text,layout X:").append(text.getLayoutX())
+                .append(" layout Y:").append(text.getLayoutY()).append("\n")
+                .append("image,layout X:").append(image.getLayoutX())
+                .append(" layout Y:").append(image.getLayoutY());
+
+        mYogaText.setText(buffer.toString());
 
     }
 }

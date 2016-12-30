@@ -10,9 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.koudle.andyogaexample.YogaActivity">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="yoga test"
-        android:id="@+id/btn"/>
+        android:id="@+id/yogaText" />
 </RelativeLayout>

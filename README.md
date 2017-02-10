@@ -20,9 +20,11 @@ libgnustl_shared.so
 1. 首先安装buck
 2. 在配置好android ndk的环境
 3. 使用命令 buck build //java:jni#android-armv7,shared 就可以得到你想要的so了,具体命令如下：
-  - buck build //java:jni#android-armv7,shared  得到 libyoga.so
-  - buck build //yoga#android-armv7,shared  得到 libyogacore.so
-  - buck build //lib/fb/fbjni#android-armv7,shared  得到 liblib_fb_fbjni.so
+ - buck build //java:jni#android-armv7,shared  得到 libyoga.so
+ - buck build //yoga#android-armv7,shared  得到 libyogacore.so
+ - buck build //lib/fb/fbjni#android-armv7,shared  得到 liblib_fb_fbjni.so
+  
+  
 * java
 YOGA的java库
 

@@ -1,6 +1,8 @@
 # AndYogaExample
 Android YOGA Example 
 
+详细内容可以查看[这篇文章](https://koudle.github.io/2017/04/11/yoga/)
+
 基于 [YOGA](https://github.com/facebook/yoga)的Android工程
 
 ## YOGA
